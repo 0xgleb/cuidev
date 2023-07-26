@@ -23,11 +23,14 @@ dependencies:
   - base >= 4.7 && < 5
   - aeson
   - file-embed
-  - http-client
+  - http-conduit
   - morpheus-graphql
   - protolude
   - servant-server
+  - text
+  - unordered-containers
   - wai
+  - wai-cors
   - warp
   - xmlbf
   - xmlbf-xeno
@@ -88,19 +91,3 @@ executables:
     dependencies:
       - base
       - server
-
-tests:
-  server-test:
-    main: Spec.hs
-    source-dirs: test
-    ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
-    dependencies:
-      - base
-      - server
-      - hspec
-      - hspec-wai
-      - hspec-wai-json
-      - aeson

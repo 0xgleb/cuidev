@@ -24,6 +24,8 @@ source-repository head
   location: https://github.com/githubuser/server
 
 library
+  exposed-modules:
+      Server
   other-modules:
       Paths_server
   hs-source-dirs:
@@ -64,11 +66,14 @@ library
       aeson
     , base >=4.7 && <5
     , file-embed
-    , http-client
+    , http-conduit
     , morpheus-graphql
     , protolude
     , servant-server
+    , text
+    , unordered-containers
     , wai
+    , wai-cors
     , warp
     , xmlbf
     , xmlbf-xeno
@@ -116,69 +121,15 @@ executable server-exe
       aeson
     , base
     , file-embed
-    , http-client
+    , http-conduit
     , morpheus-graphql
     , protolude
     , servant-server
     , server
+    , text
+    , unordered-containers
     , wai
-    , warp
-    , xmlbf
-    , xmlbf-xeno
-  default-language: Haskell2010
-
-test-suite server-test
-  type: exitcode-stdio-1.0
-  main-is: Spec.hs
-  other-modules:
-      Paths_server
-  hs-source-dirs:
-      test
-  default-extensions:
-      ApplicativeDo
-      BlockArguments
-      ConstraintKinds
-      DeriveGeneric
-      DeriveLift
-      DeriveTraversable
-      DerivingVia
-      FlexibleContexts
-      GADTs
-      GeneralizedNewtypeDeriving
-      ImportQualifiedPost
-      InstanceSigs
-      LambdaCase
-      MultiParamTypeClasses
-      NamedFieldPuns
-      NoImplicitPrelude
-      NoStarIsType
-      NumericUnderscores
-      OverloadedStrings
-      QuasiQuotes
-      RankNTypes
-      RecordWildCards
-      ScopedTypeVariables
-      StandaloneDeriving
-      TupleSections
-      TypeApplications
-      TypeFamilyDependencies
-      TypeInType
-      TypeOperators
-      ViewPatterns
-  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
-  build-depends:
-      aeson
-    , base
-    , file-embed
-    , hspec
-    , hspec-wai
-    , hspec-wai-json
-    , http-client
-    , morpheus-graphql
-    , protolude
-    , servant-server
-    , server
-    , wai
+    , wai-cors
     , warp
     , xmlbf
     , xmlbf-xeno
